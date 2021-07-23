@@ -18,11 +18,7 @@ export class SpotifyService {
     });    
     
     // Llamo a la api de Spotify para obtener los nuevos lanzamientos
-    this.http.get('https://api.spotify.com/v1/browse/new-releases?limit=5', { headers })
-      .subscribe(data => {
-        console.log(data);        
-      }); 
-    
+    return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers });    
   }
 
 }

@@ -9,13 +9,19 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
   // paises: any[] = [];
+  newReleases: any[] = [];
 
   constructor( private spotify: SpotifyService ) {
     // this.http.get('https://restcountries.eu/rest/v2/lang/es')
     //   .subscribe( (data: any[]) => {
     //     this.paises = data;        
     //   })   
-    this.spotify.getNewReleases();
+    this.spotify.getNewReleases()
+      .subscribe( (data: any) => {
+        this.newReleases = data.albums.items;
+        console.log(this.newReleases);
+                
+      })
   }
   
 
