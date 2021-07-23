@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     //   })   
     this.spotify.getNewReleases()
       .subscribe( (data: any) => {
-        this.newReleases = data.albums.items;
+        this.newReleases = data;
         //console.log(this.newReleases);
                 
       })
