@@ -21,4 +21,14 @@ export class SpotifyService {
     return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers });    
   }
 
+
+  searchArtist(termino: string) {
+
+    const headers = new HttpHeaders({
+      // Poner aca el token
+      
+    });
+
+    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist`, { headers });
+  }
 }
