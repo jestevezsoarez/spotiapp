@@ -12,15 +12,23 @@ export class SpotifyService {
     console.log('Servicio listo para usar!');
   }
 
-  getNewReleases(){
+  getQuery(query: string) {
+
+    const url = `https://api.spotify.com/v1/${query}`;
 
     const headers = new HttpHeaders({
-      // Agregar el token aqui
       
-    });    
-    
+      // Agregar aca el token
+      
+    });
+
+    return this.http.get(url, {headers});
+  }
+
+  getNewReleases(){
     // Llamo a la api de Spotify para obtener los nuevos lanzamientos
-    return this.http.get('https://api.spotify.com/v1/browse/new-releases', { headers })
+    
+    return this.getQuery('browse/new-releases')
       .pipe( map( data => {
         return data['albums'].items
       }));    
@@ -28,13 +36,7 @@ export class SpotifyService {
 
 
   searchArtist(termino: string) {
-
-    const headers = new HttpHeaders({
-      // Poner aca el token
-      
-    });
-
-    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist`, { headers })
+    return this.getQuery(`search?q=${termino}&type=artist`)    
       .pipe( map( data => {
         return data['artists'].items
       }));
