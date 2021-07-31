@@ -9,8 +9,11 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class SearchComponent implements OnInit {
 
   artists: any[] = [];
+  loading: boolean;
 
-  constructor( private spotify: SpotifyService ) { }
+  constructor( private spotify: SpotifyService ) {
+    this.loading = true;
+   }
 
   ngOnInit(): void {
   }
@@ -19,7 +22,8 @@ export class SearchComponent implements OnInit {
     
     this.spotify.searchArtist(termino)
       .subscribe((data: any) => {        
-        this.artists = data;         
+        this.artists = data;
+        this.loading = false;         
       });    
   }
 
